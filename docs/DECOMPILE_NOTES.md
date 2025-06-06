@@ -23,8 +23,20 @@ This document tracks ongoing findings from reviewing `Fulldecompile.c` as outlin
 ## Parameter Offsets
 Recent scanning around lines 31k uncovered several hardcoded offsets. The value stored at `local_1c + 0x9d40` is repeatedly printed as an RPM reading, while the variable at `local_1c + 0x9e84` acts as a divisor when it exceeds `0x10`. These addresses likely correspond to the motor speed register and a scaling factor for gear ratio or field weakening.
 
+Additional offsets identified:
+
+- `0x9d24` – bus voltage (divide by 10)
+- `0x9d28` – bus current (divide by 4)
+- `0x9d48` – throttle voltage sensor
+- `0xa074` – brake voltage sensor
+- `0x9e38` – output current *Iq*
+- `0x9e3c` – output current *Id*
+
 ## Next Steps
 - Identify where packets are parsed by searching for length fields immediately following the start byte.
 - Locate checksum logic by scanning for constants such as `0xA001` or loops operating on message bytes.
 - Map command codes to functions by examining switch statements or large `if/else` chains that handle packet `command` fields.
+
+- Trace handling of throttle and brake voltage around offsets `0x9d48` and `0xa074`.
+- Locate configuration data near `0x9e9c` to determine throttle mapping tables.
 
