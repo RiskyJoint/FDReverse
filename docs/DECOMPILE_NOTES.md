@@ -15,6 +15,10 @@ This document tracks ongoing findings from reviewing `Fulldecompile.c` as outlin
 ## Serial Port Handling
 - References to `CSerialPort::vftable` appear near line 49184, suggesting an object-oriented serial port implementation.
 - Assertions reference `serialport.cpp`, hinting that this section was originally C++ source.
+- Function `FUN_00472f90` opens COM ports using `CreateFileA` with paths like
+  `\\.\\COM%d` and configures timeouts via `SetCommTimeouts`.
+- `GetCommState` and `SetCommState` manipulate a DCB structure to apply baud
+  rate and parity settings.
 
 ## Next Steps
 - Identify where packets are parsed by searching for length fields immediately following the start byte.

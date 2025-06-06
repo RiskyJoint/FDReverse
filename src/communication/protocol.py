@@ -16,7 +16,10 @@ class Packet:
     data: bytes
 
     def encode(self) -> bytes:
-        length = len(self.data) + 2  # command + CRC
+        """Return an encoded protocol packet."""
+        # The length field includes the command byte, payload data and the two
+        # CRC bytes.  This matches the checks performed by :class:`DataParser`.
+        length = len(self.data) + 3
         payload = bytes([START_BYTE, length, self.command]) + self.data
         crc = crc16(payload)
         return payload + crc.to_bytes(2, "little")
