@@ -725,3 +725,8 @@ The old version failed because it was incomplete. This version must expose EVERY
 **Your success depends on treating the decompile like a treasure map - every line could contain the critical piece you need.**
 
 Good luck, and remember: **This is life or death!** ⚡🏁
+## NEXT STEPS
+- Continue mapping parameter offsets, starting with the RPM value at 0x9d40 and divisor at 0x9e84.
+- Expand `docs/PARAMETERS.md` with newly discovered IDs.
+- Implement streaming packet parsing once enough commands are known.
+
