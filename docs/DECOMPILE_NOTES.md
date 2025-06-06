@@ -21,7 +21,12 @@ This document tracks ongoing findings from reviewing `Fulldecompile.c` as outlin
   rate and parity settings.
 
 ## Parameter Offsets
-Recent scanning around lines 31k uncovered several hardcoded offsets. The value stored at `local_1c + 0x9d40` is repeatedly printed as an RPM reading, while the variable at `local_1c + 0x9e84` acts as a divisor when it exceeds `0x10`. These addresses likely correspond to the motor speed register and a scaling factor for gear ratio or field weakening.
+Recent scanning around lines 31k uncovered several hardcoded offsets. The value
+stored at `local_1c + 0x9d40` is repeatedly printed as an RPM counter. When
+`0x9e84` is greater than `0x10` the firmware multiplies this RPM value by four
+and divides by the `0x9e84` register. This strongly suggests that `0x9e84`
+provides a divisor used to scale the raw speed for display, likely taking the
+gear ratio or field-weakening into account.
 
 Additional offsets identified:
 

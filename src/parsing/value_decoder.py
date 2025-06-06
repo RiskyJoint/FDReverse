@@ -16,6 +16,7 @@ SCALE = {
     "iq_out_a": 0.1,
     "throttle_voltage_v": 0.01,
     "brake_voltage_v": 0.01,
+    "rpm_divisor": 1,
 }
 
 
