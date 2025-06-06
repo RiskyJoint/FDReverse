@@ -726,7 +726,7 @@ The old version failed because it was incomplete. This version must expose EVERY
 
 Good luck, and remember: **This is life or death!** ⚡🏁
 ## NEXT STEPS
-- Continue mapping parameter offsets, starting with the RPM value at 0x9d40 and divisor at 0x9e84.
-- Expand `docs/PARAMETERS.md` with newly discovered IDs.
-- Implement streaming packet parsing once enough commands are known.
+- Document throttle and brake voltage offsets (`0x9d48` and `0xa074`).
+- Reverse configuration structures around `0x9e9c` for throttle mapping.
+- Integrate new ID/IQ current parameters into the UI.
 

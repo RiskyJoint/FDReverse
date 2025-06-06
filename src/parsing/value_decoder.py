@@ -11,6 +11,11 @@ SCALE = {
     "motor_speed_rpm": 1,
     "bus_voltage_v": 0.1,
     "bus_current_a": 0.1,
+    "motor_temp_c": 1,
+    "id_out_a": 0.1,
+    "iq_out_a": 0.1,
+    "throttle_voltage_v": 0.01,
+    "brake_voltage_v": 0.01,
 }
 
 
