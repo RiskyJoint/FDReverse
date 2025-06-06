@@ -743,4 +743,10 @@ Good luck, and remember: **This is life or death!** ⚡🏁
 ## NEXT STEPS
 - Continue reversing structures near `0x9e9c` for throttle mapping.
 - Integrate remaining ID/IQ parameters into the UI and logging system.
+- Map all error and status labels referenced in `Fulldecompile.c` (e.g., `"Phase A"`,
+  `"MotorTemp"`, `"ThrottleHigh"`, `"ThrottleLow"`) to their corresponding codes.
+- Expose these labels through the logging subsystem so every fault and state
+  change is visible on the dashboard.
+- Add editing capability for the related configuration strings in the dashboard,
+  mirroring the firmware addresses found in the decompile.
 
