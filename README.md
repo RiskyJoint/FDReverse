@@ -409,6 +409,7 @@ The decompiled code contains memory addresses for all parameters. You need to fi
    - RPM values
    - Temperature sensors
    - Throttle position
+   - Example: `0x9d40` (RPM counter) scaled by `0x9e84`
 
 2. **Configuration Addresses**
    - Motor settings
@@ -461,6 +462,7 @@ HH:MM:SS.mmm,96.5,45.2,4361.4,3250,...,Test run 1
 - Configurable logging rate
 - Comment field for notes
 - Automatic file rotation
+- Implemented in `features/logging.py` via the `Logger` class
 
 ### 3. Parameter Tuning
 **Requirement**: Modify controller settings safely
@@ -589,6 +591,9 @@ ports = serial.tools.list_ports.comports()
 ### 1. CRC Implementation
 **THIS IS LIFE OR DEATH** - Without correct CRC, nothing works!
 
+See `docs/CRC_ALGORITHMS.md` for the firmware's CRC-16 implementation used by
+`src/communication/crc.py`.
+
 Look for in decompile:
 - CRC polynomial values
 - Byte-by-byte calculation loops
@@ -645,6 +650,16 @@ Requirements:
 2. Note data types (uint8, uint16, etc.)
 3. Document scaling factors
 4. Identify read vs write addresses
+
+Known offsets mapped so far:
+- `0x9d40` – motor RPM counter
+- `0x9e84` – RPM divisor used when above `0x10`
+- `0x9d24` – bus voltage (÷10)
+- `0x9d28` – bus current (÷4)
+- `0x9d48` – throttle voltage sensor
+- `0xa074` – brake voltage sensor
+- `0x9e38` – output current IQ (×0.1A)
+- `0x9e3c` – output current ID (×0.1A)
 
 ### Step 4: CRC Extraction
 1. Find CRC calculation function
@@ -726,7 +741,6 @@ The old version failed because it was incomplete. This version must expose EVERY
 
 Good luck, and remember: **This is life or death!** ⚡🏁
 ## NEXT STEPS
-- Document throttle and brake voltage offsets (`0x9d48` and `0xa074`).
-- Reverse configuration structures around `0x9e9c` for throttle mapping.
-- Integrate new ID/IQ current parameters into the UI.
+- Continue reversing structures near `0x9e9c` for throttle mapping.
+- Integrate remaining ID/IQ parameters into the UI and logging system.
 

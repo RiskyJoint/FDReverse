@@ -9,4 +9,5 @@ PARAMETERS = {
     0x0006: "iq_out_a",
     0x0007: "throttle_voltage_v",
     0x0008: "brake_voltage_v",
+    0x0009: "rpm_divisor",
 }
